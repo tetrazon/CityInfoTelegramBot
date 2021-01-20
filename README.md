@@ -9,8 +9,12 @@
 
 Для того, чтобы стартовал бот, необходимо запустить класс App, находящийся в src\main\java\com\smuniov\telegrambot\. Необходимые параметры(бота, БД) заданы в файле src\main\resources\application.properties
 
-ник бота: @ololotgbot
+ник бота: 
+
+@ololotgbot
+
 доступные команды:
+
 /start, /help, /citylist
 
 ### Управление данными
@@ -18,14 +22,19 @@
 Управление данными о городах происходит посредством HTTP запросов на localhost через порт 8080.
 
 Список всей информации:
+
 GET запрос на http://localhost:8080/
 
 Информация о городе по id:
+
 GET запрос на http://localhost:8080/{id}
 
 Создание нового блока данных:
+
 POST запрос на http://localhost:8080/
+
 Тело запроса:
+
 JSON с параметрами name и description
 ```
 {
@@ -35,9 +44,13 @@ JSON с параметрами name и description
 ```
 
 Изменение блока данных:
+
 PUT запрос на http://localhost:8080/{id}
+
 Тело запроса:
+
 JSON с параметрами name и description.
+
 ```
 {
         "name": "Глубокое",
@@ -46,5 +59,6 @@ JSON с параметрами name и description.
 ```
 
 Удаление информации о городе по id:
+
 DELETE запрос на http://localhost:8080/{id}
 
