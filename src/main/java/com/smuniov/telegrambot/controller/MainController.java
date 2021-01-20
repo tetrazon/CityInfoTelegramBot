@@ -50,6 +50,11 @@ public class MainController {
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") CityData cityData) {cityDataRepository.delete(cityData);}
+    public void delete(@PathVariable("id") int id) {
+        if(!cityDataRepository.existsById(id)) {
+            throw new BindException("No element with id = " + id);
+        }
+        cityDataRepository.deleteById(id);
+    }
 
 }
