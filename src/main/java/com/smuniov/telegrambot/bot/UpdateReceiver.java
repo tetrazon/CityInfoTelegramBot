@@ -2,7 +2,7 @@ package com.smuniov.telegrambot.bot;
 
 import com.smuniov.telegrambot.annotation.BotCommand;
 import com.smuniov.telegrambot.entity.CityData;
-import com.smuniov.telegrambot.handler.Handler;
+import com.smuniov.telegrambot.handler.ChatBotHandler;
 import com.smuniov.telegrambot.repository.JpaCityDataRepository;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,9 +15,9 @@ import java.util.stream.Stream;
 @Component
 public class UpdateReceiver {
     private final JpaCityDataRepository cityDataRepository;
-    private final List<Handler> handlers;
+    private final List<ChatBotHandler> handlers;
 
-    public UpdateReceiver(JpaCityDataRepository cityDataRepository, List<Handler> handlers) {
+    public UpdateReceiver(JpaCityDataRepository cityDataRepository, List<ChatBotHandler> handlers) {
         this.cityDataRepository = cityDataRepository;
         this.handlers = handlers;
     }
@@ -47,7 +47,7 @@ public class UpdateReceiver {
         return null;
     }
 
-    private Handler getHandler(String text) {
+    private ChatBotHandler getHandler(String text) {
         return handlers.stream()
                 .filter(h -> h.getClass()
                         .isAnnotationPresent(BotCommand.class))

@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 
 @Component
 @BotCommand(command = "/citylist")
-public class CityListHandler implements Handler {
+public class CityListChatBotHandler implements ChatBotHandler {
     private JpaCityDataRepository cityDataRepository;
 
-    public CityListHandler(JpaCityDataRepository cityDataRepository) {
+    public CityListChatBotHandler(JpaCityDataRepository cityDataRepository) {
         this.cityDataRepository = cityDataRepository;
     }
 

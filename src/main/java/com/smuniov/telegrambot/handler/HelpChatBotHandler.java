@@ -10,14 +10,14 @@ import java.util.stream.Stream;
 
 @Component
 @BotCommand(command = {"/HELP", "/START"})
-public class HelpHandler implements Handler {
+public class HelpChatBotHandler implements ChatBotHandler {
     private String helpString = "Привет, это справочник по городам." +
             "\nОтправь /help чтобы увидеть это сообщение снова." +
             "\nЧтобы увидеть справку по городу, набери название города." +
             "\nСписок доступных команд:\n";
-    private final List<Handler> handlerList;
+    private final List<ChatBotHandler> handlerList;
 
-    public HelpHandler(List<Handler> handlerList) {
+    public HelpChatBotHandler(List<ChatBotHandler> handlerList) {
         this.handlerList = handlerList;
     }
 
