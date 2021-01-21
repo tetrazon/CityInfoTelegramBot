@@ -14,9 +14,9 @@ public class Bot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String botToken;
 
-    private UpdateReceiver updateReceiver;
+    private UpdateDispatcher updateReceiver;
 
-    public Bot(UpdateReceiver updateReceiver) {
+    public Bot(UpdateDispatcher updateReceiver) {
         this.updateReceiver = updateReceiver;
     }
 

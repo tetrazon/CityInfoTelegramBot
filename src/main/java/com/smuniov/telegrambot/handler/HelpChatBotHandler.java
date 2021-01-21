@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
-@BotCommand(command = {"/HELP", "/START"})
+@BotCommand(command = {"/help", "/start"})
 public class HelpChatBotHandler implements ChatBotHandler {
     private String helpString = "Привет, это справочник по городам." +
             "\nОтправь /help чтобы увидеть это сообщение снова." +
@@ -24,8 +24,11 @@ public class HelpChatBotHandler implements ChatBotHandler {
     @Override
     public SendMessage handle(String message, String chatId) {
         StringBuilder builder = new StringBuilder(helpString);
+        handlerList.add(this);
         String commandsString = handlerList.stream()
-                .flatMap(a -> Stream.of(a
+                .filter(h -> h.getClass()
+                        .isAnnotationPresent(BotCommand.class))
+                .flatMap(h -> Stream.of(h
                         .getClass()
                         .getAnnotation(BotCommand.class)
                         .command()))
