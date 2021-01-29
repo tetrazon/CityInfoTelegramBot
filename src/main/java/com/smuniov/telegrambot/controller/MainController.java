@@ -1,7 +1,7 @@
 package com.smuniov.telegrambot.controller;
 
 import com.smuniov.telegrambot.entity.CityData;
-import com.smuniov.telegrambot.exceptions.BindException;
+import com.smuniov.telegrambot.exceptions.BadDataException;
 import com.smuniov.telegrambot.repository.JpaCityDataRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -35,10 +35,10 @@ public class MainController {
     @PostMapping
     public CityData create(@RequestBody CityData cityData){
         if (cityData == null) {
-            throw new BindException("Wrong data, city name and it's description must not be null");
+            throw new BadDataException("Wrong data, city name and it's description must not be null");
         }
         if (cityDataRepository.findByName(cityData.getName()).isPresent()){
-            throw new BindException("Already exists");
+            throw new BadDataException("Already exists");
         }
         return cityDataRepository.save(cityData);
     }
@@ -52,7 +52,7 @@ public class MainController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") int id) {
         if(!cityDataRepository.existsById(id)) {
-            throw new BindException("No element with id = " + id);
+            throw new BadDataException("No element with id = " + id);
         }
         cityDataRepository.deleteById(id);
     }

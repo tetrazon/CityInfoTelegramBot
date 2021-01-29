@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class DefaultAdvice {
 
-    @ExceptionHandler(BindException.class)
-    public ResponseEntity<Response> handleException(BindException e) {
+    @ExceptionHandler(BadDataException.class)
+    public ResponseEntity<Response> handleException(BadDataException e) {
         Response response = new Response(e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
