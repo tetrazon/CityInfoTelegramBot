@@ -28,6 +28,7 @@ public class HelpChatBotHandler implements ChatBotHandler {
         String commandsString = handlerList.stream()
                 .filter(h -> h.getClass()
                         .isAnnotationPresent(BotCommand.class))
+                .distinct()
                 .flatMap(h -> Stream.of(h
                         .getClass()
                         .getAnnotation(BotCommand.class)
